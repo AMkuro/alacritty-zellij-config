@@ -4,8 +4,49 @@ layout {
         pane size=1 borderless=true {
             plugin location="zellij:tab-bar"
         }
-        pane size=2 borderless=true {
-            plugin location="zellij:status-bar"
+        // Row 1: mode name (short) + mode switch keys
+        pane size=1 borderless=true {
+            plugin location="file:/home/miwasaki/.config/zellij/plugins/zjstatus.wasm" {
+                format_left   "{mode}"
+                format_right  "#[fg=#7aa2f7]pane#[fg=#565f89]:A-p #[fg=#9ece6a]tab#[fg=#565f89]:A-t #[fg=#449dab]sess#[fg=#565f89]:A-s #[fg=#ad8ee6]scrl#[fg=#565f89]:A-e #[fg=#e0af68]rsz#[fg=#565f89]:A-r #[fg=#ff9e64]mv#[fg=#565f89]:A-m #[fg=#f7768e]lk#[fg=#565f89]:A-g"
+
+                mode_normal        "#[fg=#9ece6a,bold] NORMAL "
+                mode_locked        "#[fg=#f7768e,bold] LOCKED "
+                mode_pane          "#[fg=#7aa2f7,bold] PANE "
+                mode_tab           "#[fg=#9ece6a,bold] TAB "
+                mode_resize        "#[fg=#e0af68,bold] RESIZE "
+                mode_scroll        "#[fg=#ad8ee6,bold] SCROLL "
+                mode_enter_search  "#[fg=#ad8ee6,bold] SEARCH "
+                mode_search        "#[fg=#ad8ee6,bold] SEARCH "
+                mode_rename_tab    "#[fg=#9ece6a,bold] RENAME TAB "
+                mode_rename_pane   "#[fg=#7aa2f7,bold] RENAME PANE "
+                mode_session       "#[fg=#449dab,bold] SESSION "
+                mode_move          "#[fg=#ff9e64,bold] MOVE "
+                mode_prompt        "#[fg=#9ece6a,bold] PROMPT "
+                mode_tmux          "#[fg=#9ece6a,bold] TMUX "
+            }
+        }
+        // Row 2: mode-specific hints (left-aligned, only shown when in a mode)
+        pane size=1 borderless=true {
+            plugin location="file:/home/miwasaki/.config/zellij/plugins/zjstatus.wasm" {
+                format_left   "{mode}"
+                format_right  ""
+
+                mode_normal        ""
+                mode_locked        "#[fg=#565f89] A-g: unlock"
+                mode_pane          "#[fg=#565f89] n:new  r:right  d:down  x:close  f:full  hjkl:focus  z:frame  e:float"
+                mode_tab           "#[fg=#565f89] n:new  x:close  r:rename  h/l:prev-next  1-9:goto"
+                mode_resize        "#[fg=#565f89] hjkl:grow  HJKL:shrink  +/-:all"
+                mode_scroll        "#[fg=#565f89] j/k:scroll  d/u:half-page  f:search  e:edit"
+                mode_enter_search  "#[fg=#565f89] type search term  Enter:start"
+                mode_search        "#[fg=#565f89] n/p:next-prev  c:case  w:wrap  o:word"
+                mode_rename_tab    "#[fg=#565f89] type name  Enter:confirm  Esc:cancel"
+                mode_rename_pane   "#[fg=#565f89] type name  Enter:confirm  Esc:cancel"
+                mode_session       "#[fg=#565f89] d:detach  w:manager  c:config  p:plugins"
+                mode_move          "#[fg=#565f89] hjkl:move-pane  n/p:next-prev"
+                mode_prompt        ""
+                mode_tmux          ""
+            }
         }
     }
 }

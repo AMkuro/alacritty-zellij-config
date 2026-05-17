@@ -1,11 +1,21 @@
 theme "tokyo-night"
 default_layout "bottom-tabs"
 on_force_close "quit"
+session_serialization false
 
 default_mode "normal"
 keybinds clear-defaults=true {
     locked {
-        bind "Ctrl g" { SwitchToMode "normal"; }
+        bind "Alt g" { SwitchToMode "normal"; }
+    }
+    normal {
+        bind "Alt p" { SwitchToMode "pane"; }
+        bind "Alt t" { SwitchToMode "tab"; }
+        bind "Alt s" { SwitchToMode "session"; }
+        bind "Alt e" { SwitchToMode "scroll"; }
+        bind "Alt r" { SwitchToMode "resize"; }
+        bind "Alt m" { SwitchToMode "move"; }
+        bind "Alt g" { SwitchToMode "locked"; }
     }
     pane {
         bind "Left" { MoveFocus "left"; }
@@ -153,7 +163,7 @@ keybinds clear-defaults=true {
         bind "Alt o" { MoveTab "right"; }
     }
     shared_except "locked" "renametab" "renamepane" {
-        bind "Ctrl g" { SwitchToMode "locked"; }
+        bind "Alt g" { SwitchToMode "locked"; }
     }
     // Enter/Esc in normal mode pass through to shell — only bind in other modes
     shared_except "locked" "normal" "entersearch" {
