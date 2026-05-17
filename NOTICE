@@ -1,0 +1,13 @@
+This repository contains a personal Alacritty + Zellij configuration derived
+from and modified after an Omakub setup.
+
+Omakub:
+  https://github.com/basecamp/omakub
+
+Omakub's README states that Omakub is released under the MIT License:
+  https://github.com/basecamp/omakub#license
+
+The local configuration in this repository has been modified for personal use,
+including Zellij normal-first key bindings and standalone installation without
+Nix, Home Manager, or sudo.
+

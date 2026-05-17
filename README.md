@@ -3,6 +3,9 @@
 Alacritty を起動すると Zellij が自動で開く構成です。
 この repository は Nix / Home Manager / sudo なしで設定ファイルを配置できるようにしています。
 
+This setup is derived from and modified after an Omakub setup. See
+`NOTICE` for attribution.
+
 ## Files
 
 ```text
@@ -105,3 +108,6 @@ stty -ixon
 | `Ctrl g` | locked mode |
 | `Ctrl g` in locked mode | normal mode |
 
+## License
+
+MIT. See `LICENSE` and `NOTICE`.
