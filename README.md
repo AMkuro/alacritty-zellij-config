@@ -11,6 +11,8 @@ This setup is derived from and modified after an Omakub setup. See
 ```text
 .config/alacritty/
   alacritty.toml
+  btop.toml
+  pane.toml
   shared.toml
   font.toml
   font-size.toml
@@ -20,6 +22,7 @@ This setup is derived from and modified after an Omakub setup. See
   config.kdl
   layouts/bottom-tabs.kdl
   themes/*.kdl
+  plugins/zjstatus.wasm
 ```
 
 ## Requirements
@@ -62,8 +65,8 @@ cd alacritty-zellij-config
 ./install.sh
 ```
 
-`install.sh` は repository 内の `.config/**` を `~/.config/**` にコピーします。
-既存ファイルと内容が違う場合は、上書き前に timestamp 付きで退避します。
+`install.sh` は repository 内の `.config/**` を `~/.config/**` へ symlink します。
+既存ファイルがある場合は、上書き前に確認し、許可されたものだけ timestamp 付きで退避して symlink に置き換えます。
 
 ```text
 ~/.config/alacritty/alacritty.toml.bak.YYYYmmdd-HHMMSS
@@ -105,8 +108,8 @@ stty -ixon
 | `Alt e` | scroll mode |
 | `Alt r` | resize mode |
 | `Alt m` | move mode |
-| `Ctrl g` | locked mode |
-| `Ctrl g` in locked mode | normal mode |
+| `Alt g` | locked mode |
+| `Alt g` in locked mode | normal mode |
 
 ## License
 
