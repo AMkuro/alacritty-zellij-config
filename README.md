@@ -65,11 +65,11 @@ cd alacritty-zellij-config
 ./install.sh
 ```
 
-`install.sh` は repository 内の `.config/**` を `~/.config/**` へ symlink します。
-既存ファイルがある場合は、上書き前に確認し、許可されたものだけ timestamp 付きで退避して symlink に置き換えます。
+`install.sh` は repository 内の `.config/alacritty` と `.config/zellij` を、`~/.config/` 配下へ directory symlink します。
+既存 path がある場合は、上書き前に確認し、許可されたものだけ timestamp 付きで退避して symlink に置き換えます。
 
 ```text
-~/.config/alacritty/alacritty.toml.bak.YYYYmmdd-HHMMSS
+~/.config/alacritty.bak.YYYYmmdd-HHMMSS
 ```
 
 事前確認:
