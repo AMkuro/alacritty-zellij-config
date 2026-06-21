@@ -11,8 +11,8 @@ usage() {
 Usage:
   ./install.sh [--dry-run]
 
-Symlinks config files under .config/ into ~/.config/.
-Existing files are replaced only after confirmation, and are backed up
+Symlinks config directories under .config/ into ~/.config/.
+Existing paths are replaced only after confirmation, and are backed up
 with .bak.YYYYmmdd-HHMMSS before replacement.
 This script does not require sudo.
 EOF
@@ -50,20 +50,18 @@ while (($# > 0)); do
   esac
 done
 
-mapfile -t files < <(git -C "$REPO_ROOT" ls-files --cached --others --exclude-standard '.config/**')
+config_dirs=(
+  ".config/alacritty"
+  ".config/zellij"
+)
 
-if ((${#files[@]} == 0)); then
-  echo "ERROR: No .config files found." >&2
-  exit 1
-fi
-
-for rel_path in "${files[@]}"; do
+for rel_path in "${config_dirs[@]}"; do
   src="$REPO_ROOT/$rel_path"
   dst="$HOME/$rel_path"
 
-  if [[ ! -f "$src" ]]; then
-    echo "WARN: Missing source: $rel_path" >&2
-    continue
+  if [[ ! -d "$src" ]]; then
+    echo "ERROR: Missing source directory: $rel_path" >&2
+    exit 1
   fi
 
   if [[ -L "$dst" ]] && [[ "$(readlink -f -- "$dst")" == "$src" ]]; then
@@ -71,10 +69,10 @@ for rel_path in "${files[@]}"; do
     continue
   fi
 
-  echo "LINK: $rel_path"
+  echo "LINK DIR: $rel_path"
 
   if ((DRY_RUN == 1)); then
-    if [[ -e "$dst" ]]; then
+    if [[ -e "$dst" || -L "$dst" ]]; then
       echo "  would backup: $dst.bak.$TIMESTAMP"
     fi
     echo "  would symlink: $dst -> $src"
@@ -83,7 +81,7 @@ for rel_path in "${files[@]}"; do
 
   mkdir -p -- "$(dirname -- "$dst")"
 
-  if [[ -e "$dst" ]]; then
+  if [[ -e "$dst" || -L "$dst" ]]; then
     if ! confirm_replace "$dst"; then
       echo "SKIP: $rel_path"
       continue
