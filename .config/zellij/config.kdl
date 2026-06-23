@@ -2,6 +2,7 @@ theme "tokyo-night"
 default_layout "bottom-tabs"
 on_force_close "quit"
 session_serialization false
+mouse_mode false
 
 default_mode "normal"
 keybinds clear-defaults=true {
@@ -43,6 +44,8 @@ keybinds clear-defaults=true {
         bind "Down" { GoToNextTab; }
         bind "Up" { GoToPreviousTab; }
         bind "Right" { GoToNextTab; }
+        bind "Shift Left" { MoveTab "left"; }
+        bind "Shift Right" { MoveTab "right"; }
         bind "1" { GoToTab 1; SwitchToMode "normal"; }
         bind "2" { GoToTab 2; SwitchToMode "normal"; }
         bind "3" { GoToTab 3; SwitchToMode "normal"; }

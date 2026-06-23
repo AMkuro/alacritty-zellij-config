@@ -35,7 +35,7 @@ layout {
                 mode_normal        ""
                 mode_locked        "#[fg=#565f89] A-g: unlock"
                 mode_pane          "#[fg=#565f89] n:new  r:right  d:down  x:close  f:full  hjkl:focus  z:frame  e:float"
-                mode_tab           "#[fg=#565f89] n:new  x:close  r:rename  h/l:prev-next  1-9:goto"
+                mode_tab           "#[fg=#565f89] n:new  x:close  r:rename  h/l:prev-next  S-Left/Right:move  1-9:goto"
                 mode_resize        "#[fg=#565f89] hjkl:grow  HJKL:shrink  +/-:all"
                 mode_scroll        "#[fg=#565f89] j/k:scroll  d/u:half-page  f:search  e:edit"
                 mode_enter_search  "#[fg=#565f89] type search term  Enter:start"
