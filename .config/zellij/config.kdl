@@ -2,7 +2,7 @@ theme "tokyo-night"
 default_layout "bottom-tabs"
 on_force_close "quit"
 session_serialization false
-mouse_mode false
+mouse_mode true
 
 default_mode "normal"
 keybinds clear-defaults=true {
